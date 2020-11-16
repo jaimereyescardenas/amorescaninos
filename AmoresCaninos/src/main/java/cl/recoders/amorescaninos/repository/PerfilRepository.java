@@ -24,14 +24,14 @@ public interface PerfilRepository extends JpaRepository<Perfil, Long>{
 //	List<Perfil> findByRazaAndGenero(Raza raza, String genero);
 //	List<Perfil> findByEdadAndGenero(int edad, String genero);
 //	List<Perfil> findByCaracteristicaAndRazaAndEdad(Caracteristica caract, Raza raza, int edad);
-	List<Perfil> findByCaracteristicaAndRazaAndGenero(
+	List<Perfil> findByCaracteristicaAndRazaAndGeneroContaining(
 	  @Nullable Caracteristica caract,
 	  @Nullable Raza raza,
 	  @Nullable String genero
 	);
 //	List<Perfil> findByCaracteristicaAndEdadAndGenero(Caracteristica caract, int edad, String genero);
 //	List<Perfil> findByRazaAndEdadAndGenero(Raza raza, int edad, String genero);
-	List<Perfil> findByCaracteristicaAndRazaAndEdadAndGenero(
+	List<Perfil> findByCaracteristicaAndRazaAndEdadAndGeneroContaining(
 	  @Nullable Caracteristica caract,
 	  @Nullable Raza raza,
 	  int edad,
