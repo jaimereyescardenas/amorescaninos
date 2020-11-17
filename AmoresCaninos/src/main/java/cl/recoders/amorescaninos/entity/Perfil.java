@@ -45,7 +45,7 @@ public class Perfil {
 	private String frase;
 	
 	@Column(name = "url_imagen", length = 200, nullable = false)
-	private String url_imagen;
+	private String urlImagen;
 	
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "raza_id")

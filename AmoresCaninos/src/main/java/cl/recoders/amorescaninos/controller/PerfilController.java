@@ -1,5 +1,6 @@
 package cl.recoders.amorescaninos.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,18 +46,28 @@ public class PerfilController {
 	
 	@PostMapping("/match")
 	public ModelAndView matchResults(
-	  @RequestParam(name = "caracteristica-id") Long caracteristicaId,
-	  @RequestParam(name = "raza-id") Long razaId,
+	  @RequestParam(name = "caracteristica-id") long caracteristicaId,
+	  @RequestParam(name = "raza-id") long razaId,
 	  @RequestParam(name = "edad") int edad,
 	  @RequestParam(name = "genero") String genero) {
 		
 		ModelAndView mav = new ModelAndView("matchresults");
-		Caracteristica caract = caractService.findById(caracteristicaId);
+		List<Long> caractList = new ArrayList<>();
+		caractList.add(caracteristicaId);
+		List<Caracteristica> caract = caractService.findAllById(caractList);
 		Raza raza = razaService.findById(razaId);
 		List<Perfil> perfiles = perfilService.findByMultipleFields(caract, raza, edad, genero);
 		mav.addObject("perfiles", perfiles);
 		return mav;
 		
+	}
+	
+	@GetMapping("/viewall")
+	public ModelAndView viewAll() {
+		ModelAndView mav = new ModelAndView("matchresults");
+		List<Perfil> perfiles = perfilService.findAll();
+		mav.addObject("perfiles", perfiles);
+		return mav;
 	}
 	
 }

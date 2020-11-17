@@ -12,10 +12,10 @@ public interface PerfilService {
 	public Perfil edit(Perfil perfil);
 	public Perfil findById(long id);
 	public List<Perfil> findAll();
-	public List<Perfil> findByCaracteristica(Caracteristica caracteristica);
+	public List<Perfil> findByCaracteristicas(List<Caracteristica> caracteristica);
 	public List<Perfil> findByRaza(Raza raza);
 	public List<Perfil> findByEdad(int edad);
 	public List<Perfil> findByGenero(String genero);
-	public List<Perfil> findByMultipleFields(Caracteristica caract, Raza raza, int edad, String genero);
+	public List<Perfil> findByMultipleFields(List<Caracteristica> caract, Raza raza, int edad, String genero);
 
 }

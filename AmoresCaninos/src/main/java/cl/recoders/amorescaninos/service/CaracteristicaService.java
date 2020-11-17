@@ -10,5 +10,6 @@ public interface CaracteristicaService {
 	public Caracteristica edit(Caracteristica caracteristica);
 	public Caracteristica findById(long id);
 	public List<Caracteristica> findAll();
+	public List<Caracteristica> findAllById(List<Long> caractList);
 	
 }

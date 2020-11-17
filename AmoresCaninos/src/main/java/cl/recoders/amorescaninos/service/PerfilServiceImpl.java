@@ -37,8 +37,8 @@ public class PerfilServiceImpl implements PerfilService {
 	}
 
 	@Override
-	public List<Perfil> findByCaracteristica(Caracteristica caract) {
-		return perfilRepo.findByCaracteristica(caract);
+	public List<Perfil> findByCaracteristicas(List<Caracteristica> caract) {
+		return perfilRepo.findByCaracteristicasIn(caract);
 	}
 
 	@Override
@@ -57,15 +57,15 @@ public class PerfilServiceImpl implements PerfilService {
 	}
 
 	@Override
-	public List<Perfil> findByMultipleFields(Caracteristica caract, Raza raza,
+	public List<Perfil> findByMultipleFields(List<Caracteristica> caract, Raza raza,
 										int edad, String genero) {
 		
 		if (edad <= 0) {
-			return perfilRepo.findByCaracteristicaAndRazaAndGeneroContaining(
+			return perfilRepo.findByCaracteristicasInAndRazaAndGeneroContaining(
 			  caract, raza, genero);
 		}
 		
-		return perfilRepo.findByCaracteristicaAndRazaAndEdadAndGeneroContaining(
+		return perfilRepo.findByCaracteristicasInAndRazaAndEdadAndGeneroContaining(
 			  caract, raza, edad, genero);
 	}
 
