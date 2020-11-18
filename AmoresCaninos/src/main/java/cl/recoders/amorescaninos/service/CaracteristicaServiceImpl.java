@@ -36,7 +36,7 @@ public class CaracteristicaServiceImpl implements CaracteristicaService {
 
 	@Override
 	public List<Caracteristica> findAllById(List<Long> caractList) {
-		return caractRepo.findAllById(caractList);
+		return caractRepo.findAllByIdIn(caractList);
 	}
 
 }

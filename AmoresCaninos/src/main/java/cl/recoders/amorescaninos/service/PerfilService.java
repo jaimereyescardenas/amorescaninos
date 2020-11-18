@@ -16,6 +16,6 @@ public interface PerfilService {
 	public List<Perfil> findByRaza(Raza raza);
 	public List<Perfil> findByEdad(int edad);
 	public List<Perfil> findByGenero(String genero);
-	public List<Perfil> findByMultipleFields(List<Caracteristica> caract, Raza raza, int edad, String genero);
+	public List<Perfil> findByMultipleFields(List<Caracteristica> caract, List<Raza> raza, int edad, List<String> genero);
 
 }

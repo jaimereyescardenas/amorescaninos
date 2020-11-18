@@ -57,15 +57,15 @@ public class PerfilServiceImpl implements PerfilService {
 	}
 
 	@Override
-	public List<Perfil> findByMultipleFields(List<Caracteristica> caract, Raza raza,
-										int edad, String genero) {
+	public List<Perfil> findByMultipleFields(List<Caracteristica> caract, List<Raza> raza,
+										int edad, List<String> genero) {
 		
 		if (edad <= 0) {
-			return perfilRepo.findByCaracteristicasInAndRazaAndGeneroContaining(
+			return perfilRepo.findDistinctByCaracteristicasInAndRazaInAndGeneroIn(
 			  caract, raza, genero);
 		}
 		
-		return perfilRepo.findByCaracteristicasInAndRazaAndEdadAndGeneroContaining(
+		return perfilRepo.findDistinctByCaracteristicasInAndRazaInAndEdadAndGeneroIn(
 			  caract, raza, edad, genero);
 	}
 

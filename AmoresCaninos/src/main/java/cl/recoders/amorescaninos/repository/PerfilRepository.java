@@ -17,16 +17,16 @@ public interface PerfilRepository extends JpaRepository<Perfil, Long>{
 	List<Perfil> findByRaza(Raza raza);
 	List<Perfil> findByEdad(int edad);
 	List<Perfil> findByGenero(String genero);
-	List<Perfil> findByCaracteristicasInAndRazaAndGeneroContaining(
+	List<Perfil> findDistinctByCaracteristicasInAndRazaInAndGeneroIn(
 	  @Nullable List<Caracteristica> caract,
-	  @Nullable Raza raza,
-	  @Nullable String genero
+	  @Nullable List<Raza> raza,
+	  @Nullable List<String> genero
 	);
-	List<Perfil> findByCaracteristicasInAndRazaAndEdadAndGeneroContaining(
+	List<Perfil> findDistinctByCaracteristicasInAndRazaInAndEdadAndGeneroIn(
 	  @Nullable List<Caracteristica> caract,
-	  @Nullable Raza raza,
+	  @Nullable List<Raza> raza,
 	  int edad,
-	  @Nullable String genero
+	  @Nullable List<String> genero
 	);
 	
 }

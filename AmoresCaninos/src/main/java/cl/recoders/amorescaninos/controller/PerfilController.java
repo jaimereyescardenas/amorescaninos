@@ -46,17 +46,36 @@ public class PerfilController {
 	
 	@PostMapping("/match")
 	public ModelAndView matchResults(
-	  @RequestParam(name = "caracteristica-id") long caracteristicaId,
-	  @RequestParam(name = "raza-id") long razaId,
-	  @RequestParam(name = "edad") int edad,
-	  @RequestParam(name = "genero") String genero) {
+	  @RequestParam(name = "caracteristica-id", required = false) long caracteristicaId,
+	  @RequestParam(name = "raza-id", required = false) long razaId,
+	  @RequestParam(name = "edad", required = false) int edad,
+	  @RequestParam(name = "genero", required = false) String genero) {
 		
 		ModelAndView mav = new ModelAndView("matchresults");
+		
+		// Preparar lista de ids de caracteristicas
 		List<Long> caractList = new ArrayList<>();
 		caractList.add(caracteristicaId);
-		List<Caracteristica> caract = caractService.findAllById(caractList);
-		Raza raza = razaService.findById(razaId);
-		List<Perfil> perfiles = perfilService.findByMultipleFields(caract, raza, edad, genero);
+		
+		// Preparar listas de raza y genero
+		List<Raza> raza = new ArrayList<>();
+		raza.add(razaService.findById(razaId));
+		List<String> genList = new ArrayList<>();
+		genList.add(genero);
+		
+		// Crear lista de opciones de género 
+		// (como es fija puede ir aquí o en una clase separada)
+		List<String> gen = new ArrayList<>();
+		gen.add("Macho");
+		gen.add("Hembra");
+		
+		// Comprobar cada campo para ver si se debe filtrar
+		raza = (razaId == 0) ? razaService.findAll() : raza;
+		List<Caracteristica> caract = (caracteristicaId == 0) ? caractService.findAll() : caractService.findAllById(caractList);
+		genList = genero.equals("Ambos") ? gen : genList;
+		
+		// Aplicar filtros correspondientes y enviar el resultado a la vista
+		List<Perfil> perfiles = perfilService.findByMultipleFields(caract, raza, edad, genList);
 		mav.addObject("perfiles", perfiles);
 		return mav;
 		
