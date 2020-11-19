@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import cl.recoders.amorescaninos.data.PerfilData;
 import cl.recoders.amorescaninos.entity.Caracteristica;
 import cl.recoders.amorescaninos.entity.Perfil;
 import cl.recoders.amorescaninos.entity.Raza;
@@ -39,8 +40,12 @@ public class PerfilController {
 		ModelAndView mav = new ModelAndView("match");
 		List<Raza> razas = razaService.findAll();
 		List<Caracteristica> caracteristicas = caractService.findAll();
+		List<Integer> edades = PerfilData.EDADES;
+		List<String> generos = PerfilData.GENEROS;
 		mav.addObject("razas", razas);
 		mav.addObject("caracteristicas", caracteristicas);
+		mav.addObject("edades", edades);
+		mav.addObject("generos", generos);
 		return mav;
 	}
 	
@@ -54,8 +59,7 @@ public class PerfilController {
 		ModelAndView mav = new ModelAndView("matchresults");
 		
 		// Preparar lista de ids de caracteristicas
-		List<Long> caractList = new ArrayList<>();
-		caractList.add(caracteristicaId);
+		List<Long> caractList = List.of(caracteristicaId);
 		
 		// Preparar listas de raza y genero
 		List<Raza> raza = new ArrayList<>();
@@ -63,16 +67,10 @@ public class PerfilController {
 		List<String> genList = new ArrayList<>();
 		genList.add(genero);
 		
-		// Crear lista de opciones de género 
-		// (como es fija puede ir aquí o en una clase separada)
-		List<String> gen = new ArrayList<>();
-		gen.add("Macho");
-		gen.add("Hembra");
-		
 		// Comprobar cada campo para ver si se debe filtrar
 		raza = (razaId == 0) ? razaService.findAll() : raza;
 		List<Caracteristica> caract = (caracteristicaId == 0) ? caractService.findAll() : caractService.findAllById(caractList);
-		genList = genero.equals("Ambos") ? gen : genList;
+		genList = genero.equals("Todos") ? PerfilData.GENEROS : genList;
 		
 		// Aplicar filtros correspondientes y enviar el resultado a la vista
 		List<Perfil> perfiles = perfilService.findByMultipleFields(caract, raza, edad, genList);
