@@ -21,7 +21,7 @@
 </head>
 <body>
 
-	<%@ include file="header.html" %>  
+	<%@ include file="header.html" %>
 
 	<main>
 		<h2 class="mb-4 ml-4">Perfiles</h2>
@@ -44,7 +44,7 @@
 							</p>
 		    			</div>
 		  			</div>
-	  			<img class="d-flex ml-3 rounded" alt="${perfil.getNombre()}" src="${perfil.getUrlImagen()}" width="100" height="100">
+	  			<img class="d-flex ml-3 rounded" alt="${perfil.getNombre()}" src="${perfil.getUrlImagen()}" width="100">
 				</div>
 			</div>
 		</c:forEach>

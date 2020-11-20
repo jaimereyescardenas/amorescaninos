@@ -12,7 +12,7 @@ import cl.recoders.amorescaninos.entity.Raza;
 
 @Repository
 public interface PerfilRepository extends JpaRepository<Perfil, Long>{
-	
+
 	List<Perfil> findByCaracteristicasIn(List<Caracteristica> caract);
 	List<Perfil> findByRaza(Raza raza);
 	List<Perfil> findByEdad(int edad);

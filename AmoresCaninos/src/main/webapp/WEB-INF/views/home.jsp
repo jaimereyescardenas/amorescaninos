@@ -12,7 +12,7 @@
 <body>
 
 	<div class="wrapper">
-		<%@ include file="header.html" %>  
+		<%@ include file="header.html" %>
 		<main class="p-3">
 			<div class="">
 				<p>“Amores Caninos” es una iniciativa creada con el objetivo de

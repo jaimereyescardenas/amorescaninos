@@ -22,7 +22,7 @@
 </head>
 <body>
 
-	<%@ include file="header.html" %>  
+	<%@ include file="header.html" %>
 
 	<main>
 		<h2 class="mb-4 ml-4">Búsqueda de perfiles</h2>
