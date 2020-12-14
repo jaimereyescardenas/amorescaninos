@@ -13,6 +13,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -22,6 +24,12 @@ import lombok.Setter;
 @SequenceGenerator(name = "caract_id_seq", sequenceName = "caract_id_seq")
 @Getter @Setter
 @NoArgsConstructor
+@JsonIgnoreProperties(
+		  ignoreUnknown = true, 
+		  value = {
+			"hibernateLazyInitializer",
+			"handler",
+			"perfiles"})
 public class Caracteristica {
 
 	@Id
